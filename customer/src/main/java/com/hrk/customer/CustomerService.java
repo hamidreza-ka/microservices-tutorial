@@ -1,10 +1,14 @@
 package com.hrk.customer;
 
+import com.hrk.clients.fraud.FraudCheckResponse;
+import com.hrk.clients.fraud.FraudClient;
+import com.hrk.clients.notification.NotificationClient;
+import com.hrk.clients.notification.NotificationRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public record CustomerService(RestTemplate restTemplate, CustomerRepository repository) {
+public record CustomerService(CustomerRepository repository, FraudClient fraudClient, NotificationClient notificationClient) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
@@ -14,15 +18,18 @@ public record CustomerService(RestTemplate restTemplate, CustomerRepository repo
         // todo: check if email valid
         // todo: check if email not taken
         repository.saveAndFlush(customer);
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
+
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
 
         if (fraudCheckResponse.isFraudster())
             throw new IllegalStateException("fraudster");
 
-        // todo: send notification
+        notificationClient.sendNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hi %s welcome to HRK Academy...", customer.getFirstName())
+                )
+        );
     }
 }

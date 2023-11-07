@@ -1,4 +1,4 @@
-package com.hrk.fraud;
+package com.hrk.clients.fraud;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }

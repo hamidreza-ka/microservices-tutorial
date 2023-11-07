@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
-    name: customer
+    name: notification
 
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5434/customer
+    url: jdbc:postgresql://localhost:5434/notification
     username: hrk
 
   jpa:
