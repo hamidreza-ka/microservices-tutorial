@@ -7,8 +7,10 @@ import com.hrk.clients.notification.NotificationRequest;
 import org.springframework.stereotype.Service;
 
 @Service
-public record CustomerService(CustomerRepository repository, FraudClient fraudClient,
-                              RabbitMQMessageProducer rabbitMQMessageProducer) {
+public record CustomerService(
+        CustomerRepository repository,
+        FraudClient fraudClient,
+        RabbitMQMessageProducer rabbitMQMessageProducer) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
