@@ -40,29 +40,29 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-  eureka-server:
-    image: hrkarimi/eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-  apigw:
-    image: hrkarimi/apigw:latest
-    container_name: apigw
-    ports:
-      - "8083:8083"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka-server
+#  eureka-server:
+#    image: hrkarimi/eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#  apigw:
+#    image: hrkarimi/apigw:latest
+#    container_name: apigw
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka-server
   customer:
     image: hrk/customer:latest
     container_name: customer
@@ -77,7 +77,6 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-      - eureka-server
   fraud:
     image: hrk/fraud:latest
     container_name: fraud
@@ -92,7 +91,6 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-      - eureka-server
   notification:
     image: hrk/notification:latest
     container_name: notification
@@ -107,7 +105,6 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-      - eureka-server
 
 
 
