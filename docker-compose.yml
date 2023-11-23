@@ -64,7 +64,7 @@ services:
 #      - zipkin
 #      - eureka-server
   customer:
-    image: hrk/customer:latest
+    image: hrkarimi/customer:latest
     container_name: customer
     ports:
       - "8080:8080"
@@ -78,7 +78,7 @@ services:
       - zipkin
       - rabbitmq
   fraud:
-    image: hrk/fraud:latest
+    image: hrkarimi/fraud:latest
     container_name: fraud
     ports:
       - "8081:8081"
@@ -92,7 +92,7 @@ services:
       - zipkin
       - rabbitmq
   notification:
-    image: hrk/notification:latest
+    image: hrkarimi/notification:latest
     container_name: notification
     ports:
       - "8082:8082"
