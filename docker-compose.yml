@@ -63,48 +63,48 @@ services:
 #    depends_on:
 #      - zipkin
 #      - eureka-server
-  customer:
-    image: hrkarimi/customer:latest
-    container_name: customer
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-      - rabbitmq
-  fraud:
-    image: hrkarimi/fraud:latest
-    container_name: fraud
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-      - rabbitmq
-  notification:
-    image: hrkarimi/notification:latest
-    container_name: notification
-    ports:
-      - "8082:8082"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - postgres
-      - zipkin
-      - rabbitmq
+#  customer:
+#    image: hrkarimi/customer:latest
+#    container_name: customer
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#      - rabbitmq
+#  fraud:
+#    image: hrkarimi/fraud:latest
+#    container_name: fraud
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#      - rabbitmq
+#  notification:
+#    image: hrkarimi/notification:latest
+#    container_name: notification
+#    ports:
+#      - "8082:8082"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - postgres
+#      - zipkin
+#      - rabbitmq
 
 
 

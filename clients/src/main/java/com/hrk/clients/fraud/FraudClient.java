@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FraudClient {
 
     // you can say general path in getMapping if you want
-    @GetMapping("/{customerId}")
+    @GetMapping("/api/v1/fraud-check/{customerId}")
     FraudCheckResponse isFraudster(@PathVariable("customerId") Integer customerId);
 }

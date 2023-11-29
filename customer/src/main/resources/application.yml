@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: customer
+  profiles:
+    active: default
 
   datasource:
     password: password
@@ -31,4 +33,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
-    enabled: false
+    enabled: true
